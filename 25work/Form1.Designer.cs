@@ -59,7 +59,7 @@
             this.workTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.workTimePicker.Name = "workTimePicker";
             this.workTimePicker.ShowUpDown = true;
-            this.workTimePicker.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.workTimePicker.Value = new System.DateTime(2000, 1, 1, 0, 25, 0, 0);
             // 
             // breakTimePicker
             // 
@@ -67,7 +67,7 @@
             this.breakTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.breakTimePicker.Name = "breakTimePicker";
             this.breakTimePicker.ShowUpDown = true;
-            this.breakTimePicker.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.breakTimePicker.Value = new System.DateTime(2000, 1, 1, 0, 5, 0, 0);
             // 
             // numOfCycles
             // 
