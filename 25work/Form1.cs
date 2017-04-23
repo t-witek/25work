@@ -14,7 +14,7 @@ namespace _25work
     public partial class Form1 : Form
     {
         enum CycleEnum { Break, Work }
-        enum TimerStateEnum { Start, Stop }
+        enum TimerStateEnum { Start, Stop, Alarm }
         
         #region properties
         private SoundPlayer soundPlayer;
@@ -52,6 +52,10 @@ namespace _25work
                         UpdateTimeLabel();
                         button1.Text = "Start";
                         break;
+                    case TimerStateEnum.Start:
+                        timer1.Start();
+                        button1.Text = "Pause";
+                        break;
                 }
 
                 timerState = value;
@@ -83,5 +87,26 @@ namespace _25work
             timeLabel.Text = string.Format("{0:00}:{1:00}", time.Minute, time.Second);
         }
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            switch (((Button)sender).Text)
+            {
+                case "Stop":
+                    TimerState = TimerStateEnum.Stop;
+                    break;
+                case "Start":
+                    TimerState = TimerStateEnum.Start;
+                    break;
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            time = time.AddSeconds(-1);
+            UpdateTimeLabel();
+            if (time.Minute == 0 && time.Second == 0)
+                TimerState = TimerStateEnum.Alarm;
+        }
     }
 }
