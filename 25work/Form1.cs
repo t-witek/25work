@@ -21,11 +21,25 @@ namespace _25work
         private DateTime time;
         private CycleEnum cycle;
         private TimerStateEnum timerState;
+        private const string timeToString = "Time to {0}";
+        private const string timeForString = "Time for {0}";
 
-        //private CycleEnum Cycle
-        //{
-        //    get;
-        //}
+        private string CycleName
+        {
+            get
+            {
+                switch (cycle)
+                {
+                    case CycleEnum.Break:
+                        return "break";
+                    case CycleEnum.Work:
+                        return "work";
+                    default:
+                        return null;
+                }
+                    
+            }
+        }
         private DateTime Duration
         {
             get
@@ -51,10 +65,12 @@ namespace _25work
                         time = Duration;
                         UpdateTimeLabel();
                         button1.Text = "Start";
+                        cancelButton.Text = "Toggle Cycle";
                         break;
                     case TimerStateEnum.Start:
                         timer1.Start();
                         button1.Text = "Pause";
+                        cancelButton.Text = "Stop";
                         break;
                 }
 
@@ -67,19 +83,28 @@ namespace _25work
         public Form1()
         {
             InitializeComponent();
-            cycle = CycleEnum.Work;
+            cycle = CycleEnum.Break;
+            ToggleCycle();
             TimerState = TimerStateEnum.Stop;
             soundPlayer = new SoundPlayer(_25work.Properties.Resources.alarm);
             soundPlayer.Load();
         }
 
         #region methods
-        private void ToggleState ()
+        private void ToggleCycle ()
         {
             if (cycle == CycleEnum.Break)
+            {
                 cycle = CycleEnum.Work;
+            }
             else
+            {
                 cycle = CycleEnum.Break;
+            }
+
+            time = Duration;
+            infoLabel.Text = string.Format(timeToString, CycleName);
+            UpdateTimeLabel();
         }
 
         private void UpdateTimeLabel()
@@ -92,11 +117,21 @@ namespace _25work
         {
             switch (((Button)sender).Text)
             {
+                case "Start":
+                    TimerState = TimerStateEnum.Start;
+                    break;
+            }
+        }
+        
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            switch (((Button)sender).Text)
+            {
                 case "Stop":
                     TimerState = TimerStateEnum.Stop;
                     break;
-                case "Start":
-                    TimerState = TimerStateEnum.Start;
+                case "Toggle Cycle":
+                    ToggleCycle();
                     break;
             }
         }
@@ -108,5 +143,6 @@ namespace _25work
             if (time.Minute == 0 && time.Second == 0)
                 TimerState = TimerStateEnum.Alarm;
         }
+
     }
 }

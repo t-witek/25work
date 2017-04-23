@@ -316,13 +316,13 @@
     <value>107, 145</value>
   </data>
   <data name="infoLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 13</value>
+    <value>59, 13</value>
   </data>
   <data name="infoLabel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
   <data name="infoLabel.Text" xml:space="preserve">
-    <value>Time to break</value>
+    <value>Time to {0}</value>
   </data>
   <data name="&gt;&gt;infoLabel.Name" xml:space="preserve">
     <value>infoLabel</value>
