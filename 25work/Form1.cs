@@ -14,7 +14,7 @@ namespace _25work
     public partial class Form1 : Form
     {
         enum CycleEnum { Break, Work }
-        enum TimerStateEnum { Start, Stop, Pause, Continue, Alarm }
+        enum TimerStateEnum { Start, Stop, Pause, Continue, Alarm, Dismiss }
         
         #region properties
         private SoundPlayer soundPlayer;
@@ -80,6 +80,20 @@ namespace _25work
                         timer1.Start();
                         button1.Text = "Pause";
                         break;
+                    case TimerStateEnum.Alarm:
+                        timer1.Stop();
+                        Activate();
+                        soundPlayer.PlayLooping();
+                        infoLabel.Font = new Font(infoLabel.Font, FontStyle.Bold);
+                        infoLabel.Text = string.Format(timeForString, cycle == CycleEnum.Work ? "break" : "work");
+                        button1.Text = "Dismiss";
+                        break;
+                    case TimerStateEnum.Dismiss:
+                        soundPlayer.Stop();
+                        ToggleCycle();
+                        infoLabel.Font = new Font(infoLabel.Font, FontStyle.Regular);
+                        TimerState = TimerStateEnum.Start;
+                        break;
                 }
 
                 timerState = value;
@@ -133,6 +147,9 @@ namespace _25work
                     break;
                 case "Continue":
                     TimerState = TimerStateEnum.Continue;
+                    break;
+                case "Dismiss":
+                    TimerState = TimerStateEnum.Dismiss;
                     break;
             }
         }
