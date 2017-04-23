@@ -14,7 +14,7 @@ namespace _25work
     public partial class Form1 : Form
     {
         enum CycleEnum { Break, Work }
-        enum TimerStateEnum { Start, Stop, Alarm }
+        enum TimerStateEnum { Start, Stop, Pause, Continue, Alarm }
         
         #region properties
         private SoundPlayer soundPlayer;
@@ -72,6 +72,14 @@ namespace _25work
                         button1.Text = "Pause";
                         cancelButton.Text = "Stop";
                         break;
+                    case TimerStateEnum.Pause:
+                        timer1.Stop();
+                        button1.Text = "Continue";
+                        break;
+                    case TimerStateEnum.Continue:
+                        timer1.Start();
+                        button1.Text = "Pause";
+                        break;
                 }
 
                 timerState = value;
@@ -119,6 +127,12 @@ namespace _25work
             {
                 case "Start":
                     TimerState = TimerStateEnum.Start;
+                    break;
+                case "Pause":
+                    TimerState = TimerStateEnum.Pause;
+                    break;
+                case "Continue":
+                    TimerState = TimerStateEnum.Continue;
                     break;
             }
         }
