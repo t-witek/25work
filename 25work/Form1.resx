@@ -313,16 +313,16 @@
     <value>True</value>
   </data>
   <data name="infoLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>107, 145</value>
+    <value>94, 145</value>
   </data>
   <data name="infoLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 13</value>
+    <value>96, 13</value>
   </data>
   <data name="infoLabel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
   <data name="infoLabel.Text" xml:space="preserve">
-    <value>Time to {0}</value>
+    <value>Remaining {0} time</value>
   </data>
   <data name="&gt;&gt;infoLabel.Name" xml:space="preserve">
     <value>infoLabel</value>

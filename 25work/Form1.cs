@@ -17,15 +17,15 @@ namespace _25work
         enum TimerStateEnum { Start, Stop, Pause, Continue, Alarm, Dismiss }
         
         #region properties
-        private SoundPlayer soundPlayer;
+        private SoundPlayer alarmSound;
         private DateTime time;
         private CycleEnum cycle;
         private TimerStateEnum timerState;
-        private int numOfCycles = 0;
+        private int numberOfCycles = 0;
         private TimeSpan workTime = TimeSpan.Zero;
-        private const string timeToString = "Time to {0}";
+        private const string remainingTimeString = "Remaining {0} time";
         private const string timeForString = "Time for {0}";
-        private const string numOfCyclesString = "Num. of cycles {0} (total work time {1})";
+        private const string numberOfCyclesString = "Num. of cycles {0} (total work time {1})";
 
         private string CycleName
         {
@@ -43,6 +43,7 @@ namespace _25work
                     
             }
         }
+        
         private DateTime Duration
         {
             get
@@ -53,6 +54,7 @@ namespace _25work
                     return workTimePicker.Value;
             }
         }
+        
         private TimerStateEnum TimerState
         {
             get
@@ -88,21 +90,19 @@ namespace _25work
                         if (cycle == CycleEnum.Work)
                             AddCycle();
                         Activate();
-                        soundPlayer.PlayLooping();
+                        alarmSound.PlayLooping();
                         infoLabel.Font = new Font(infoLabel.Font, FontStyle.Bold);
                         infoLabel.Text = string.Format(timeForString, cycle == CycleEnum.Work ? "break" : "work");
                         button1.Text = "Dismiss";
                         break;
                     case TimerStateEnum.Dismiss:
-                        soundPlayer.Stop();
+                        alarmSound.Stop();
                         ToggleCycle();
                         infoLabel.Font = new Font(infoLabel.Font, FontStyle.Regular);
                         TimerState = TimerStateEnum.Start;
                         break;
                 }
-
-                timerState = value;
-                    
+                timerState = value;   
             }
         }
 
@@ -114,8 +114,8 @@ namespace _25work
             cycle = CycleEnum.Break;
             ToggleCycle();
             TimerState = TimerStateEnum.Stop;
-            soundPlayer = new SoundPlayer(_25work.Properties.Resources.alarm);
-            soundPlayer.Load();
+            alarmSound = new SoundPlayer(_25work.Properties.Resources.alarm);
+            alarmSound.Load();
             UpdateWorkTimeLabel();
         }
 
@@ -132,7 +132,7 @@ namespace _25work
             }
 
             time = Duration;
-            infoLabel.Text = string.Format(timeToString, CycleName);
+            infoLabel.Text = string.Format(remainingTimeString, CycleName);
             UpdateTimeLabel();
         }
 
@@ -143,17 +143,18 @@ namespace _25work
 
         private void AddCycle()
         {
-            numOfCycles++;
+            numberOfCycles++;
             workTime += new TimeSpan(0, Duration.Minute, Duration.Second);
             UpdateWorkTimeLabel();
         }
 
         private void UpdateWorkTimeLabel()
         {
-            numOfCyclesLabel.Text = string.Format(numOfCyclesString, numOfCycles, workTime.ToString());
+            numOfCyclesLabel.Text = string.Format(numberOfCyclesString, numberOfCycles, workTime.ToString());
         }
         #endregion
 
+        #region event handlers
         private void button1_Click(object sender, EventArgs e)
         {
             switch (((Button)sender).Text)
@@ -205,10 +206,11 @@ namespace _25work
 
         private void resetButton_Click(object sender, EventArgs e)
         {
-            numOfCycles = 0;
+            numberOfCycles = 0;
             workTime = TimeSpan.Zero;
             UpdateWorkTimeLabel();
         }
+        #endregion
 
     }
 }
