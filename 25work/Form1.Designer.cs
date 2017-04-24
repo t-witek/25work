@@ -60,6 +60,7 @@
             this.workTimePicker.Name = "workTimePicker";
             this.workTimePicker.ShowUpDown = true;
             this.workTimePicker.Value = new System.DateTime(2000, 1, 1, 0, 25, 0, 0);
+            this.workTimePicker.ValueChanged += new System.EventHandler(this.timePicker_ValueChanged);
             // 
             // breakTimePicker
             // 
@@ -68,6 +69,7 @@
             this.breakTimePicker.Name = "breakTimePicker";
             this.breakTimePicker.ShowUpDown = true;
             this.breakTimePicker.Value = new System.DateTime(2000, 1, 1, 0, 5, 0, 0);
+            this.breakTimePicker.ValueChanged += new System.EventHandler(this.timePicker_ValueChanged);
             // 
             // numOfCycles
             // 

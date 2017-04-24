@@ -175,5 +175,14 @@ namespace _25work
                 TimerState = TimerStateEnum.Alarm;
         }
 
+        private void timePicker_ValueChanged(object sender, EventArgs e)
+        {
+            if (TimerState == TimerStateEnum.Stop)
+            {
+                time = Duration;
+                UpdateTimeLabel();
+            }
+        }
+
     }
 }
