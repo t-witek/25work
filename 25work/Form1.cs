@@ -66,6 +66,8 @@ namespace _25work
                 switch (value) 
                 {
                     case TimerStateEnum.Stop:
+                        if (timerState == TimerStateEnum.Alarm)
+                            TimerState = TimerStateEnum.Dismiss;
                         timer1.Stop();
                         time = Duration;
                         UpdateTimeLabel();
@@ -99,7 +101,6 @@ namespace _25work
                         alarmSound.Stop();
                         ToggleCycle();
                         infoLabel.Font = new Font(infoLabel.Font, FontStyle.Regular);
-                        TimerState = TimerStateEnum.Start;
                         break;
                 }
                 timerState = value;   
@@ -170,6 +171,7 @@ namespace _25work
                     break;
                 case "Dismiss":
                     TimerState = TimerStateEnum.Dismiss;
+                    TimerState = TimerStateEnum.Start;
                     break;
             }
         }
