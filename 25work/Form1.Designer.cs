@@ -34,7 +34,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.workTimePicker = new System.Windows.Forms.DateTimePicker();
             this.breakTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.numOfCycles = new System.Windows.Forms.Label();
+            this.numOfCyclesLabel = new System.Windows.Forms.Label();
             this.resetButton = new System.Windows.Forms.Button();
             this.timeLabel = new System.Windows.Forms.Label();
             this.infoLabel = new System.Windows.Forms.Label();
@@ -71,16 +71,17 @@
             this.breakTimePicker.Value = new System.DateTime(2000, 1, 1, 0, 5, 0, 0);
             this.breakTimePicker.ValueChanged += new System.EventHandler(this.timePicker_ValueChanged);
             // 
-            // numOfCycles
+            // numOfCyclesLabel
             // 
-            resources.ApplyResources(this.numOfCycles, "numOfCycles");
-            this.numOfCycles.Name = "numOfCycles";
+            resources.ApplyResources(this.numOfCyclesLabel, "numOfCyclesLabel");
+            this.numOfCyclesLabel.Name = "numOfCyclesLabel";
             // 
             // resetButton
             // 
             resources.ApplyResources(this.resetButton, "resetButton");
             this.resetButton.Name = "resetButton";
             this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
             // 
             // timeLabel
             // 
@@ -120,7 +121,7 @@
             this.Controls.Add(this.infoLabel);
             this.Controls.Add(this.timeLabel);
             this.Controls.Add(this.resetButton);
-            this.Controls.Add(this.numOfCycles);
+            this.Controls.Add(this.numOfCyclesLabel);
             this.Controls.Add(this.breakTimePicker);
             this.Controls.Add(this.workTimePicker);
             this.Controls.Add(this.label2);
@@ -139,7 +140,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker workTimePicker;
         private System.Windows.Forms.DateTimePicker breakTimePicker;
-        private System.Windows.Forms.Label numOfCycles;
+        private System.Windows.Forms.Label numOfCyclesLabel;
         private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.Label timeLabel;
         private System.Windows.Forms.Label infoLabel;

@@ -21,8 +21,11 @@ namespace _25work
         private DateTime time;
         private CycleEnum cycle;
         private TimerStateEnum timerState;
+        private int numOfCycles = 0;
+        private TimeSpan workTime = TimeSpan.Zero;
         private const string timeToString = "Time to {0}";
         private const string timeForString = "Time for {0}";
+        private const string numOfCyclesString = "Num. of cycles {0} (total work time {1})";
 
         private string CycleName
         {
@@ -82,6 +85,8 @@ namespace _25work
                         break;
                     case TimerStateEnum.Alarm:
                         timer1.Stop();
+                        if (cycle == CycleEnum.Work)
+                            AddCycle();
                         Activate();
                         soundPlayer.PlayLooping();
                         infoLabel.Font = new Font(infoLabel.Font, FontStyle.Bold);
@@ -100,6 +105,7 @@ namespace _25work
                     
             }
         }
+
         #endregion
 
         public Form1()
@@ -110,6 +116,7 @@ namespace _25work
             TimerState = TimerStateEnum.Stop;
             soundPlayer = new SoundPlayer(_25work.Properties.Resources.alarm);
             soundPlayer.Load();
+            UpdateWorkTimeLabel();
         }
 
         #region methods
@@ -132,6 +139,18 @@ namespace _25work
         private void UpdateTimeLabel()
         {
             timeLabel.Text = string.Format("{0:00}:{1:00}", time.Minute, time.Second);
+        }
+
+        private void AddCycle()
+        {
+            numOfCycles++;
+            workTime += new TimeSpan(0, Duration.Minute, Duration.Second);
+            UpdateWorkTimeLabel();
+        }
+
+        private void UpdateWorkTimeLabel()
+        {
+            numOfCyclesLabel.Text = string.Format(numOfCyclesString, numOfCycles, workTime.ToString());
         }
         #endregion
 
@@ -182,6 +201,13 @@ namespace _25work
                 time = Duration;
                 UpdateTimeLabel();
             }
+        }
+
+        private void resetButton_Click(object sender, EventArgs e)
+        {
+            numOfCycles = 0;
+            workTime = TimeSpan.Zero;
+            UpdateWorkTimeLabel();
         }
 
     }

@@ -225,41 +225,41 @@
   <data name="&gt;&gt;breakTimePicker.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="numOfCycles.AutoSize" type="System.Boolean, mscorlib">
+  <data name="numOfCyclesLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="numOfCycles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 49</value>
+  <data name="numOfCyclesLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 49</value>
   </data>
-  <data name="numOfCycles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 13</value>
+  <data name="numOfCyclesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>188, 13</value>
   </data>
-  <data name="numOfCycles.TabIndex" type="System.Int32, mscorlib">
+  <data name="numOfCyclesLabel.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="numOfCycles.Text" xml:space="preserve">
-    <value>Num. of cycles {0}</value>
+  <data name="numOfCyclesLabel.Text" xml:space="preserve">
+    <value>Num. of cycles {0} (total work time {1})</value>
   </data>
-  <data name="&gt;&gt;numOfCycles.Name" xml:space="preserve">
-    <value>numOfCycles</value>
+  <data name="&gt;&gt;numOfCyclesLabel.Name" xml:space="preserve">
+    <value>numOfCyclesLabel</value>
   </data>
-  <data name="&gt;&gt;numOfCycles.Type" xml:space="preserve">
+  <data name="&gt;&gt;numOfCyclesLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;numOfCycles.Parent" xml:space="preserve">
+  <data name="&gt;&gt;numOfCyclesLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;numOfCycles.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;numOfCyclesLabel.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
   <data name="resetButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="resetButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>196, 44</value>
+    <value>237, 44</value>
   </data>
   <data name="resetButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>49, 23</value>
   </data>
   <data name="resetButton.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
